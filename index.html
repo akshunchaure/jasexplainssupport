@@ -167,6 +167,14 @@
         }
       }
 
+      // Convert URLs in text to clickable links
+      function linkify(text) {
+        const urlPattern = /(\bhttps?:\/\/[^\s]+)/gi;
+        return text.replace(urlPattern, (url) => {
+          return `<a href="${url}" target="_blank" style="color:#0073e6;text-decoration:underline;">${url}</a>`;
+        });
+      }
+
       async function sendMessage() {
         const msg = messageInput.value.trim();
         if (!msg) return;
@@ -195,12 +203,12 @@
           const data = await response.json();
           chatbox.removeChild(typingIndicator);
 
+          const decodedText = decodeBase64(data.response || "");
+          const linkedText = linkify(decodedText);
+
           const botMsg = document.createElement("div");
           botMsg.classList.add("message", "bot");
-          botMsg.innerHTML = decodeBase64(data.response || "").replace(
-            /\n/g,
-            "<br>"
-          );
+          botMsg.innerHTML = linkedText.replace(/\n/g, "<br>");
           chatbox.appendChild(botMsg);
           scrollChat();
         } catch (error) {
@@ -222,5 +230,3 @@
     </script>
   </body>
 </html>
-
-
