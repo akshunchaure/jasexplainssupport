@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jas Explains Support AI</title>
+  <title>Jaskaran Singh - Virtual Assistant</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: "Segoe UI", Tahoma, sans-serif;
-      background: linear-gradient(135deg, #f0f6ff, #e6f0ff);
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #2c3e50);
       display: flex;
       flex-direction: column;
-      color: #002244;
+      color: #e0e6ed;
     }
 
     #chat-header {
-      background: linear-gradient(90deg, #004aad, #0073e6);
+      background: linear-gradient(90deg, #006d77, #00afb9);
       color: #fff;
       text-align: center;
       padding: 25px;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       letter-spacing: 0.5px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       border-bottom-left-radius: 20px;
       border-bottom-right-radius: 20px;
       position: relative;
+    }
+
+    #chat-header span {
+      font-size: 14px;
+      font-weight: normal;
+      display: block;
+      margin-top: 4px;
+      opacity: 0.9;
     }
 
     #chatbox {
@@ -37,81 +45,88 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      background: rgba(240,250,255,0.7);
-      backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(6px);
       border-radius: 20px 20px 0 0;
     }
 
     .message {
       max-width: 75%;
       padding: 14px 18px;
-      border-radius: 20px;
+      border-radius: 14px;
       word-wrap: break-word;
       font-size: 15px;
       line-height: 1.4;
-      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .message.user {
-      background: #004aad;
+      background: #006d77;
       color: #fff;
       align-self: flex-end;
       border-bottom-right-radius: 5px;
-      box-shadow: 0 4px 10px rgba(0,74,173,0.4);
+      box-shadow: 0 4px 10px rgba(0,109,119,0.4);
     }
 
     .message.bot {
-      background: #ffffff;
-      color: #002244;
+      background: #1b263b;
+      color: #e0e6ed;
       align-self: flex-start;
       border-bottom-left-radius: 5px;
-      box-shadow: 0 4px 10px rgba(0,74,173,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     #input-area {
       display: flex;
-      border-top: 1px solid rgba(0,74,173,0.3);
+      border-top: 1px solid rgba(255,255,255,0.1);
       padding: 14px 20px;
-      background: rgba(0,74,173,0.1);
-      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
     }
 
     #message {
       flex: 1;
       border: none;
-      border-radius: 20px;
+      border-radius: 14px;
       padding: 12px 16px;
       font-size: 15px;
       outline: none;
-      background: rgba(255,255,255,0.9);
-      color: #002244;
+      background: rgba(255,255,255,0.95);
+      color: #0d1b2a;
     }
 
     #send {
-      background: #0073e6;
+      background: #00afb9;
       border: none;
       color: #fff;
       padding: 0 20px;
       margin-left: 10px;
       cursor: pointer;
       font-size: 15px;
-      border-radius: 20px;
+      border-radius: 14px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,115,230,0.4);
+      box-shadow: 0 4px 10px rgba(0,175,185,0.4);
     }
 
     #send:hover {
-      background: #005bb5;
+      background: #008f95;
       transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0,115,230,0.6);
+      box-shadow: 0 6px 12px rgba(0,175,185,0.6);
     }
 
     #chatbox::-webkit-scrollbar {
       width: 6px;
     }
     #chatbox::-webkit-scrollbar-thumb {
-      background-color: rgba(0,74,173,0.5);
+      background-color: rgba(0,175,185,0.6);
       border-radius: 3px;
+    }
+
+    #developer-credit {
+      text-align: center;
+      font-size: 12px;
+      color: #9fb6c3;
+      padding: 6px 0;
+      background: rgba(0,0,0,0.2);
     }
 
     @media screen and (max-width: 480px) {
@@ -121,18 +136,22 @@
     }
 
     a {
-      color: #0073e6;
+      color: #00afb9;
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div id="chat-header">Jas Explains Support AI</div>
+  <div id="chat-header">
+    🤵 Virtual Assistant for Jaskaran Singh  
+    <span>Dating & Relationship Coach for Men</span>
+  </div>
   <div id="chatbox"></div>
   <div id="input-area">
-    <input type="text" id="message" placeholder="Ask your question..." />
+    <input type="text" id="message" placeholder="Ask me anything about dating & relationships..." />
     <button id="send">Send</button>
   </div>
+  <div id="developer-credit">Developed by Akshun Chaure</div>
 
   <script>
     const chatbox = document.getElementById("chatbox");
@@ -165,7 +184,7 @@
 
       const typingIndicator = document.createElement("div");
       typingIndicator.classList.add("message", "bot");
-      typingIndicator.textContent = "⌛ Support agent is typing…";
+      typingIndicator.textContent = "⌛ Jaskaran's assistant is typing…";
       chatbox.appendChild(typingIndicator);
       scrollChat();
 
@@ -183,7 +202,6 @@
 
         let decodedText = decodeBase64(data.response || "");
 
-        // Ensure HTML entities are rendered correctly
         const tempDiv = document.createElement("div");
         tempDiv.textContent = decodedText;
         decodedText = tempDiv.innerHTML;
@@ -212,4 +230,3 @@
   </script>
 </body>
 </html>
-
